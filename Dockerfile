@@ -1,7 +1,7 @@
 FROM alpine:latest
 MAINTAINER Darin Egan <darinegan@gmail.com>
 
-RUN apk --no-cache add \
+RUN apk add --no-cache \
     ca-certificates
 
 RUN apk add --no-cache --virtual .build-deps\
@@ -9,7 +9,7 @@ RUN apk add --no-cache --virtual .build-deps\
         libc-dev \
         libgcc \
         linux-headers \
-    && apk --no-cache add \
+    && apk add --no-cache \
         py-pip \
         python \
         python-dev \
