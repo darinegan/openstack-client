@@ -28,7 +28,7 @@ verify:
 		fi ; \
 	done
 
-run: build verify
+run: verify
 	docker run --rm -it \
 		-v $(OPENRC_SH):/openrc.sh \
 		-e OS_CACERT=$(OS_CACERT) \
