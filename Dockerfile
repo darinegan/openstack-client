@@ -19,8 +19,8 @@ RUN apk add --no-cache --virtual .build-deps\
         python-openstackclient \
     && apk del .build-deps
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-ENTRYPOINT [ "/start.sh" ]
+COPY callback.sh /callback.sh
+RUN chmod +x /callback.sh
+ENTRYPOINT [ "/callback.sh" ]
 
 CMD [ "openstack" ]

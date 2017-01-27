@@ -11,7 +11,7 @@ OS_CACERT ?= $(CURRENT_DIR)/os-cacert.crt
 
 .PHONY: default build clean verify run
 
-default: run
+default: build
 
 build:
 	docker build -t $(DOCKERTAG) .
