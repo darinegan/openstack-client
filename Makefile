@@ -9,7 +9,9 @@ CURRENT_DIR := $(shell pwd)
 OPENRC_SH ?= $(CURRENT_DIR)/openrc.sh
 OS_CACERT ?= $(CURRENT_DIR)/os-cacert.crt
 
-.PHONY: default build clean verify run
+HOST_URL := $(shell awk -F'/' '/OS_AUTH_URL=/{print $$3}' $(OPENRC_SH))
+
+.PHONY: default build clean configure verify run
 
 default: build
 
@@ -18,6 +20,9 @@ build:
 
 clean:
 	docker rmi $(DOCKERTAG)
+
+configure: verify
+	@echo -n | openssl s_client -showcerts -connect $(HOST_URL) 2>&1 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 
 verify:
 	@echo "Verifying required files"
